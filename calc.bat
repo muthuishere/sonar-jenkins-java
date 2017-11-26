@@ -1,0 +1,1 @@
+java -jar build\libs\sonarqube-scanner-gradle-1.0.jar

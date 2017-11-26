@@ -1,0 +1,54 @@
+plugins {
+  id "org.sonarqube" version "2.4"
+}
+
+description = 'Sample Sonarqube Gradle for Swing Calculator'
+version = '1.0'
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Swing Calculator (Gradle)'
+		property 'sonar.projectKey', 'sonar-gradle-java'
+		property 'sonar.projectVersion', '0.0.0.3'
+		property 'sonar.host.url', 'http://localhost:9000'
+		property 'sonar.login', 'admin'
+		property 'sonar.password', 'admin'			
+		
+		
+
+    }
+}
+
+
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+apply plugin: 'eclipse'
+
+
+
+repositories {
+
+    jcenter()
+}
+
+dependencies {
+    compile 'com.google.guava:guava:21.0'
+
+
+    testCompile 'junit:junit:4.12'
+}
+
+
+jar {
+  manifest {
+    attributes(
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+      'Main-Class': 'com.deemwar.sonar.SimpleJavaCalculator'
+    )
+  }
+}
+
+
+
